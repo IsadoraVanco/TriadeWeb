@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Trunfo | Cartas</title>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-super-trunfo.png" class="page-logo" alt="">
+        <h1 class="page-title">Super Trunfo</h1>
+        <button id="btnSortear" onclick="sortearCarta()">Sortear Carta</button>
+        <form id="form">
+            <h2>Escolha o seu atributo</h2>
+            <div class="wrapper">
+                <div>
+                    <div id="carta-jogador" class="carta">
+                        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png"
+                        style=" width: inherit; height: inherit; position: absolute;">
+                        <h3></h3>
+                    </div>
+                </div>
+                <div>
+                    <div id="carta-maquina" class="carta">
+                        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">
+                    </div>
+                </div>
+            </div>
+            <button class="button-jogar" type="button" id="btnJogar" onclick="jogar()" disabled="false">Jogar</button>
+            <div id="resultado"></div>
+        </form>
+    </div>
+</body>
+<style>
+    body{
+        font-family: monospace;
+        min-height:854px;
+        background-image: url('https://www.alura.com.br/assets/img/imersoes/dev-2021/dia-07-super-trunfo-bg.png');
+        background-color: black;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        padding-bottom: 20vh;
+    }
+
+    .container{
+        text-align: center;
+        padding: 20px;
+    }
+
+    .page-title{
+        color: white;
+        margin: 5px 0;
+    }
+
+    button, .button-jogar{
+        padding: .8rem 1.5rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    h2{
+        color: white;
+    }
+
+    #carta-jogador, #carta-maquina{
+        width: 360px;
+        height: 500px;
+        overflow: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-end;
+        position: relative;
+        background-size: 350px 300px;
+        background-repeat: no-repeat;
+        background-position-x: 5px;
+        background-position-y: 10px;
+        border-radius: 33px;
+    }
+
+    #carta-jogador h3{
+        text-align: center;
+    }
+
+    .carta-imagem{
+        border: 1px solid black;
+        height: 100px;
+        margin: 10px;
+    }
+
+    .carta-imagem img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .carta-status{
+        height: 160px;
+        margin: 1.5rem;
+        color: white;
+        z-index: 2;
+    }
+
+    .carta-status input{
+        margin: 20px 10px;
+    }
+
+    #resultado{
+        color: white;
+        font-size: 2rem;
+        font-weight: bolder;
+        text-transform: uppercase;
+        padding: 1rem;
+        border: 2px solid black;
+        background-color: black;
+    }
+
+    .--spacing {
+    margin-left: 2.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.carta-subtitle {
+    z-index: 2;
+    position: absolute;
+    top: 16px;
+    left: 37px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+#cartas {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.carta-status p {
+    margin-bottom: 2rem;
+}
+</style>
+<script>
+    var carta1 = {
+        nome: "Bulbassauro",
+        imagem: "https://adesivodo.com.br/wp-content/uploads/adesivo-pokemon-bulbasaur.jpg",
+        atributos: {
+            ataque: 7,
+            defesa: 8,
+            magia: 6
+        }
+    }
+
+    var carta2 = {
+        nome: "Darth Vader",
+        imagem: "https://sm.ign.com/ign_br/screenshot/default/darth-vader_5yvm.jpg",
+        atributos: {
+            ataque: 9,
+            defesa: 8,
+            magia: 2
+        }
+    }
+
+    var carta3 = {
+        nome: "Shiryu de dragão",
+        imagem: "https://img.elo7.com.br/product/zoom/2B30902/camiseta-shiryu-de-dragao-fullprint-nerd.jpg",
+        atributos: {
+            ataque: 5,
+            defesa: 9,
+            magia: 10
+        }
+    }
+
+    var cartas = [carta1, carta2, carta3];
+    var cartaMaquina;
+    var cartaJogador;
+
+    function sortearCarta(){
+        var numeroCartaMaquina = parseInt(Math.random() * 3);
+        cartaMaquina = cartas[numeroCartaMaquina];
+
+        var numeroCartaJogador = parseInt(Math.random() * 3);
+        while(numeroCartaJogador == numeroCartaMaquina){
+            var numeroCartaJogador = parseInt(Math.random() * 3);
+        }
+        cartaJogador = cartas[numeroCartaJogador]; 
+
+        document.getElementById("btnSortear").disabled = true;
+        document.getElementById("btnJogar").disabled = false;
+
+        exibirCartaJogador();
+    }
+
+    function exibirOpcoes(){
+        var opcoes = document.getElementById("opcoes");
+        var opcoesTexto = "";
+        for(var atributo in cartaJogador.atributos){
+            opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "'>";
+            opcoesTexto += atributo;
+        }
+        opcoes.innerHTML = opcoesTexto;
+    }
+
+    function jogar(){
+        var atributoSelecionado = obtemAtributoSelecionado();
+        var divResultado = document.getElementById("resultado");
+        var htmlResultado = "";
+        
+        var valorCartaJogador = cartaJogador.atributos[atributoSelecionado];
+        var valorCartaMaquina = cartaMaquina.atributos[atributoSelecionado];
+
+        console.log(valorCartaJogador);
+        if(valorCartaJogador > valorCartaMaquina){
+            htmlResultado = "<p class='resultado-final'>Você venceu!</p>";
+        }else if(valorCartaJogador < valorCartaMaquina){
+            htmlResultado = "<p class='resultado-final'>Você perdeu!</p>";
+        }else{
+            htmlResultado = "<p class='resultado-final'>Empatou!</p>"
+        }
+        
+        divResultado.innerHTML = htmlResultado;
+
+        document.getElementById("btnJogar").disabled = true;
+        document.getElementById("btnSortear").disabled = false;
+        exibirCartaMaquina();
+        cartaMaquina = null;
+        cartaJogador = null;
+    }
+
+    function exibirCartaMaquina(){
+        var divCartaMaquina = document.getElementById("carta-maquina");
+        divCartaMaquina.style.backgroundImage = `url(${cartaMaquina.imagem})`;
+        var moldura = '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
+        var tagHTML = "<div id='opcoes' class='carta-status'>";
+
+        var opcoesTexto = "";
+        for(var atributo in cartaMaquina.atributos){
+            opcoesTexto += "<p type='text' name='atributo' value='" + atributo + "'>";
+            opcoesTexto += atributo + " " + cartaMaquina.atributos[atributo] + "</p>";
+        }
+        
+        var nome = `<p class= 'carta-subtitle'>${cartaMaquina.nome}</p>`;
+
+        divCartaMaquina.innerHTML = moldura + nome + tagHTML + opcoesTexto + "</div>";
+    }
+
+    function obtemAtributoSelecionado(){
+        var radioAtributos = document.getElementsByName("atributo");
+
+        for(var i = 0; i < radioAtributos.length; i++){
+            if(radioAtributos[i].checked == true){
+                return radioAtributos[i].value;
+            }
+        }
+    }
+
+    function exibirCartaJogador(){
+        var divCartaJogador = document.getElementById("carta-jogador");
+        divCartaJogador.style.backgroundImage = `url(${cartaJogador.imagem})`;
+        var moldura = '<img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/card-super-trunfo-transparent-ajustado.png" style=" width: inherit; height: inherit; position: absolute;">';
+        var tagHTML = "<div id='opcoes' class='carta-status'>";
+
+        var opcoesTexto = "";
+        for(var atributo in cartaJogador.atributos){
+            opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "'>";
+            opcoesTexto += atributo + " " + cartaJogador.atributos[atributo] + "<br>";
+        }
+        
+        var nome = `<p class= 'carta-subtitle'>${cartaJogador.nome}</p>`;
+
+        divCartaJogador.innerHTML = moldura + nome + tagHTML + opcoesTexto + "</div>";
+    }
+</script>
+</html>

@@ -1,0 +1,178 @@
+<html>
+    <body>
+        <div class="container">
+            <header class="cabecario">
+                <div class="perfil">
+                    <img src="https://github.com/isadora-vanco.png" class="perfil-foto"/>
+                    <div class="texto-top">
+                        <h1><a href="https://github.com/isadora-vanco" target="_blank" id="link">Isadora Vanço</a></h1>
+                        <h3>Estudante de programação web e robótica</h3>
+                    </div>
+                </div>
+                <div class="tema">
+                    <button onclick="mudaTema()">Alterar tema</button>
+                </div>
+            </header>
+            <main>
+                <div class="projetos">
+                    <ul class="projetos-titulo">Projetos desenvolvidos na Imersão Dev 2022</ul>
+                        <li><a href=""></a>🔢 Conversor de moedas</li>
+                        <!-- adicionar o embed do codepen em cada um -->
+                        <li><a href=""></a>🔮 Mentalista</li>
+                        <li><a href=""></a>📊 Tabela de classificações</li>
+                        <li><a href=""></a>🎬 Aluraflix</li>
+                        <li><a href=""></a>🎴 Super Trunfo</li>
+                </div>
+                <div class="conquistas">
+                    <p class="conquistas-titulo">Conquistas</p>
+                    <img src="../aulas/Aula 1 - Média.png" title="Calculadora de Média">
+                    <img src="../aulas/Dia 2 - Calculadora.png" title="Conversores">                        
+                    <img src="../aulas/Dia 3 - Mentalista.png" title="Jogo Mentalista">
+                    <img src="../aulas/Dia 4 e 5 - Aluraflix.png" title="Aluraflix">
+                    <img src="../aulas/Dia 6 - Placar.png" title="Tabela de Classificações">
+                    <img src="../aulas/Dia 7 e 8 - Super Trunfo.png" title="Super Trunfo">
+                    <img src="../aulas/Aula 9 - HTML e CSS.png" title="Certificard">
+                </div>
+            </main>
+        </div>
+    </body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500&family=Poppins&display=swap');
+
+        body{
+            background: rgb(2,0,36);
+            background: linear-gradient(49deg, rgba(2,0,36,1) 0%, rgba(48,168,235,1) 51%, rgba(0,212,255,1) 100%);
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .container{
+            background-color: white;
+            padding: 30px;
+            margin: 60px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px #363636;
+        }
+
+        .cabecario{
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .perfil{
+            display: flex; 
+
+        }
+
+        .perfil-foto{
+            border-radius: 50%;
+            max-width: 160px;
+            box-shadow: 0px 4px 4px #6e6e6e;
+        }
+
+        .texto-top{
+            margin-left: 16px;
+        }
+
+        .texto-top h1{
+            font-weight: 500;
+            font-size: 40px;
+        }
+
+
+        #link{
+            text-decoration: none;
+            color: black;
+        }
+
+        #link:hover{
+            color: rgba(0,212,255,1);
+        }
+
+        .texto-top h3{
+            font-weight: 300;
+            font-size: 25px;
+        }
+
+        .tema button{
+            align-self: flex-end;
+            font-size: 24px;
+            font-weight: 300;
+            padding: 8px 16px;
+            background: white;
+            border-radius: 100px;
+            border: 2px solid black;
+            cursor: pointer;
+        }
+
+        main{
+            justify-content:space-between;
+
+        }
+
+        .projetos, .conquistas{
+            background: linear-gradient(350deg, rgba(2,0,36,1) 0%, rgba(48,168,235,1) 50%, rgb(0, 194, 233) 100%);
+            margin-top: 32px;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 2px 2px 4px #6e6e6e;
+        }
+
+        .projetos-titulo, .conquistas-titulo{
+            list-style: none;
+            font-weight: 500;
+            font-size: 35px;
+            padding-left: 40px;
+        }
+
+        .projetos li{
+            list-style-type: none;
+            font-size: 24px;
+            font-weight: 300;
+            line-height: 45px;
+        }
+
+        .projetos li a{
+            color: black;
+            text-decoration: none;
+        }
+        
+        .conquistas img{
+            width: 118px;
+            margin: 10px;
+            align-self: center;
+        }
+
+        .dark{
+            background: linear-gradient(49deg, rgba(2,0,36,1) 0%, rgba(85,110,116,1) 50%, rgba(21,116,139,1) 100%);
+        }
+
+        .dark .container{
+            background: #363636;
+            color: white;
+        }
+
+        .dark .projetos, .dark .conquistas{
+            background: linear-gradient(350deg, rgba(2,0,36,1) 0%, rgba(85,110,116,1) 50%, rgba(21,116,139,1) 100%);
+        }
+
+        .dark .tema button{
+            background-color: #1c1c1c;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .dark #link{
+            color: white;
+        }
+
+        .dark #link:hover{
+            color: rgba(21,116,139,1);
+        }
+    </style>
+    <script>
+        function mudaTema(){
+            document.body.classList.toggle("dark");
+        }
+    </script>
+</html>

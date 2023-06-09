@@ -1,0 +1,96 @@
+<html>
+    <body>
+        <div class="container">
+            <header class="perfil">
+                <img src="https://github.com/isadora-vanco.png" class="perfil-foto"/>
+                <div class="texto-top">
+                    <h1><a href="https://github.com/isadora-vanco" target="_blank">Isadora Vanço</a></h1>
+                    <h3>Estudante de programação web e robótica</h3>
+                </div>
+            </header>
+            <main class="projetos">
+                <ul>Projetos desenvolvidos na Imersão Dev 2022</ul>
+                <li><a href="" target="_blank"></a>🔢 Conversor de moedas</li>
+                <li><a href="" target="_blank"></a>🔮 Mentalista</li>
+                <li><a href="" target="_blank"></a>📊 Tabela de classificações</li>
+                <li><a href="" target="_blank"></a>🎬 Aluraflix</li>
+                <li><a href="" target="_blank"></a>🎴 Super Trunfo</li>
+            </main>
+        </div>
+    </body>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300;500&family=Poppins&display=swap');
+
+        body{
+            background: rgb(2,0,36);
+            background: linear-gradient(49deg, rgba(2,0,36,1) 0%, rgba(48,168,235,1) 51%, rgba(0,212,255,1) 100%);
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .container{
+            background-color: white;
+            padding: 30px;
+            margin: 60px;
+            border-radius: 20px;
+            box-shadow: 5px 5px 5px #363636;
+        }
+
+        .perfil{
+            /* indica que estamos usando o flex box */
+            display: flex; 
+            align-items: center;
+        }
+
+        .perfil-foto{
+            border-radius: 50%;
+            max-width: 160px;
+            box-shadow: 0px 4px 4px #6e6e6e;
+        }
+
+        .texto-top{
+            margin-left: 16px;
+        }
+
+        .texto-top h1{
+            font-weight: 500;
+            font-size: 40px;
+        }
+
+        .texto-top a{
+            text-decoration: none; 
+            color:black;
+        }
+
+        .texto-top a:hover{
+            color: rgba(0,212,255,1);
+        }
+
+        .texto-top h3{
+            font-weight: 300;
+            font-size: 25px;
+        }
+
+        .projetos{
+            display: flex;
+            flex-direction: column;
+            color: white;
+            background: linear-gradient(350deg, rgba(2,0,36,1) 0%, rgba(48,168,235,1) 50%, rgb(0, 194, 233) 100%);
+            padding: 20px;   
+            margin-top: 30px;   
+            border-radius: 20px;  
+            text-align: left;
+        }
+
+        .projetos ul{
+            font-weight: 500;
+            font-size: 20px;
+        }
+
+        .projetos li{
+            font-weight: 300;
+            font-size: 20px;
+        }
+
+    </style>
+</html>

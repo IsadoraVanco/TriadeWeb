@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de moedas</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Conversor de moedas</h1>
+        <p class="page-subtitle">Descubra os valores em dólar U$</p>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-conversor-de-moedas.svg" class="page-logo" alt=""><br><br>
+        <label for="moeda">Insira o valor em Real</label><br>
+        <input type="number" id="valor" size="2" /><br>
+        <button type="submit" onclick="converter()">Converter</button> 
+        <div id="valorConvertido"></div>
+    </div>
+</body>
+<style>
+    body{
+        font-family: "Roboto Mono", monospace;
+        min-height: 400px;
+        background-image:url("https://www.alura.com.br/assets/img/imersoes/dev-2021/dia-1-conversor-de-moedas.png");
+        background-color: black;
+        background-size: 100vh;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+    }
+
+    .container{
+        text-align: center;
+        padding: 20px;
+        height: 100vh;
+    }
+
+    .page-title{
+        color: white;
+        margin: 0 0 5px;
+    }
+
+    .page-subtitle{
+        color: white;
+        margin-top: 5px;
+    }
+
+    .page-logo{
+        width: 200px;
+    }
+
+    input{
+        margin: 12px;
+        padding: 6px;
+        border-radius: 5px;
+    }
+
+    label{
+        color: white;
+    }
+
+    button{
+        margin-top: 12px;
+        padding: 4px 8 px;
+        border-radius: 10px;
+        background: white;
+    }
+
+    h2{
+        color: white;
+        font-size: 30px;
+    }
+
+    #valorConvertido{
+        color: white;
+        margin-top: 10px;
+        font-size: 20px;
+    }
+</style>
+<script>
+    function converter(){
+        var divInput = document.getElementById("valor");
+        var divResultado = document.getElementById("valorConvertido");
+
+        var valor = divInput.value;
+
+        if(valor == ""){
+            divResultado.innerHTML = "Insira um valor válido";
+        }else{
+            var valorEmDolar = (parseFloat(valor) / 5).toFixed(2); //março de 2021: 1 dolar = 5 reais (aproximadamente)
+            divResultado.innerHTML = "U$ " + valorEmDolar;
+        }
+    }
+</script>
+</html>

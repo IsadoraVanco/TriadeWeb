@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluraflix</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Aluraflix</h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-aluraflix.svg" class="page-logo" alt="">
+        <p class="page-subtitle">Qual seu filme favorito?</p>
+        <div class="form-wrapper">
+            <input type="text" id="linkFilme" placeholder="Insira o endereço de imagem"><br>
+            <input type="text" id="nomeFilme" placeholder="Insira o nome da mídia">
+            <button onclick="adicionarFilme()" id="adicionar">Adicionar Filme </button>
+            <button onclick="removeFilme()" id="remover">Remover Filme</button>
+        </div>
+    </div>
+    <div id="listaFilmes"></div>
+</body>
+<style>
+    body{
+        font-family: monospace;
+        text-align: center;
+        background-image: url("https://www.alura.com.br/assets/img/imersoes/dev-2021/dia-04-aluraflix-e-filmes.png");
+        background-color: black;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+    }
+
+    .container{
+        text-align:center;
+        padding:20px;
+    }
+
+    .page-title{
+        color:white;
+        margin: 0 0 5px;
+        font-size: 40px;
+    }
+
+    .page-subtitle{
+        color: white;
+        margin-top: 5px;
+        font-size: 20px;
+    }
+
+    .page-logo{
+        width: 200px;
+    }
+
+    #listafilmes img{
+        margin: 10px;
+        max-height: 250px;
+    }
+
+    .form-wrapper{
+        margin: 0 0 15px;
+    }
+
+    .form-wrapper input{
+        display: block;
+        margin:0 auto;
+        padding:10px 20px;
+        min-width: 25vh;
+    }
+
+    .form-wrapper button{
+        border: 0;
+        font-weight: bold;
+        padding: 15px 20px;
+        font-size: 15px;
+        border-radius: 4px;
+        margin-top: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #adicionar{
+        color: white;
+        background:#da1e26;
+    }
+
+    #remover{
+        color:#da1e26;
+        background:white;
+    }
+
+    .form-wrapper button:hover{
+        opacity: 0.8;
+    }
+</style>
+<script>
+    //retirar um filme
+    //colocar também o nome
+    //fazer uma lista pra guardar os filmes
+    var listaFilmes = [];
+
+    function adicionarFilme(){
+        var linkInserido = document.getElementById("filme").value;
+        if(linkInserido.endsWith(".jpg")){
+            listaFilmes(linkInserido);
+        }else{
+            console.error("Endereço de filme inválido");
+        }
+        document.getElementById("filme").value = ""
+    }
+
+    function listaFilmes(link){
+        var tagsImg = "<img src=" + link + ">";
+        var divFilmes = document.getElementById("listaFilmes");
+        divFilmes.innerHTML = divFilmes.innerHTML + tagsImg;
+
+    }
+</script>
+</html>

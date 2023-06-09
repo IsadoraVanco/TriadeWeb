@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentalista</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Mentalista</h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-mentalista.svg" class="page-logo" alt="">
+        <br>
+        <p class="page-subtitle">Digite um número de 0 a 10</p>
+        <input type="number" id="valor"/><br>
+        <button type="submit" onclick="chutar()">Chutar</button>
+        <h2 class="resultado" id="resultado"></h2>
+    </div>
+</body>
+<style>
+    body{
+        font-family: "Roboto Mono", monospace;
+        min-height: 600px;
+        background-image:url("https://www.alura.com.br/assets/img/imersoes/dev-2021/dia-03-mentalista.png");
+        background-color: black;
+        background-size: cover;
+        background-position: center bottom;
+        background-repeat: no-repeat;
+    }
+
+    .container{
+        text-align: center;
+        padding: 20px;
+        height: 100vh;
+    }
+
+    .page-title{
+        color:white;
+        margin: 0 0 5px;
+    }
+
+    .page-subtitle{
+        color:white;
+        margin-top: 16px;
+    }
+
+    .page-logo{
+        width: 200px;
+    }
+
+    @media (max-height: 500px){
+        body{
+            min-height: 800px;
+        }
+    }
+
+    input{
+        margin: 4px;
+        padding: 6px;
+        border-radius: 5px;
+    }
+
+    button{
+        margin-top: 12px;
+        padding: 4px 8px;
+        border-radius: 10px;
+        background: white;
+    }
+
+    .resultado{
+        color: white;
+        text-align:center;
+        margin-top: 16px;
+    }
+</style>
+<script>
+    var numeroSorteado;
+    var tentativas;
+    iniciarJogo();
+    
+    function chutar(){
+        var divResultado = document.getElementById("resultado");
+
+        var divInput = document.getElementById("valor");
+        var chute = divInput.value;
+        var mensagem;
+
+        if((chute > 10 || chute < 0) || chute == ""){
+            mensagem = "Você deve digitar um número entre 0 e 10!";
+        }else{
+            tentativas--;
+            if(tentativas == 0 && chute != numeroSorteado){
+                mensagem = "Você errou e acabaram suas tentativas! \nO número era " + numeroSorteado;
+                iniciarJogo();
+            }else{
+                mensagem = analisaMaiorOuMenor(chute);
+            }    
+        }
+
+        divResultado.innerHTML = mensagem;
+    }
+
+    function sortearNumero(){
+        var numero = parseInt(Math.random() * 11);
+        return numero;
+    }
+
+    function iniciarJogo(){
+        numeroSorteado = sortearNumero();
+        tentativas = 3;
+    }
+
+    function analisaMaiorOuMenor(chute){
+        if(chute < numeroSorteado){
+            return "O número sorteado é maior que " + chute + "! \nVocê possui " + tentativas + " tentativas";
+        }else if(chute == numeroSorteado){
+            iniciarJogo();
+            return "Parabéns, você acertou! O número era " + chute;
+        }else{
+            return "O número sorteado é menor que " + chute + "! \nVocê possui " + tentativas + " tentativas";
+        }
+    }
+</script>
+</html>

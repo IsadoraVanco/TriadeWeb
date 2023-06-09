@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Trunfo | Lógica</title>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-super-trunfo.png" class="page-logo" alt="">
+        <h1 class="page-title">Super Trunfo</h1>
+        <button id="btnSortear" onclick="sortearCarta()">Sortear Carta</button>
+        <form id="form">
+            <h2>Escolha o seu atributo</h2>
+            <div class="opcoes" id="opcoes"></div>
+            <button type="button" id="btnJogar" onclick="jogar()" disabled="true">Jogar</button>
+            <div id="resultado"></div>
+        </form>
+    </div>
+</body>
+<style>
+    body{
+        font-family: monospace;
+        min-height:854px;
+        background-image: url('https://www.alura.com.br/assets/img/imersoes/dev-2021/dia-07-super-trunfo-bg.png');
+        background-color: black;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+        padding-bottom: 20vh;
+    }
+
+    .container{
+        text-align: center;
+        padding: 20px;
+    }
+
+    .page-title{
+        color: white;
+        margin: 5px 0;
+    }
+
+    button{
+        padding: .8rem 1.5rem;
+        margin: 1rem 0;
+        border-radius: 5px;
+        border: none;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    h2{
+        color: white;
+    }
+
+    #carta-jogador{
+        width: 360px;
+        height: 500px;
+        overflow: auto;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        margin: 0 auto;
+        display: flex;
+        align-items: flex-end;
+    }
+
+    #carta-jogador h3{
+        text-align: center;
+    }
+
+    .carta-imagem{
+        border: 1px solid black;
+        height: 100px;
+        margin: 10px;
+    }
+
+    .carta-imagem img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .carta-status{
+        height: 160px;
+        margin: 1.5rem;
+    }
+
+    .carta-status input{
+        margin: 20px 10px;
+    }
+
+    .opcoes{
+        color: white;
+    }
+
+    #resultado{
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+    }
+</style>
+<script>
+    //se não selecionar nada, o que fazer?
+    //aumentar cartas
+    //adicionar imagem para aparecer depois que for selcionado 
+
+    var carta1 = {
+        nome: "Bulbassauro",
+        atributos: {
+            ataque: 7,
+            defesa: 8,
+            magia: 6
+        }
+    }
+
+    var carta2 = {
+        nome: "Darth Vader",
+        atributos: {
+            ataque: 9,
+            defesa: 8,
+            magia: 2
+        }
+    }
+
+    var carta3 = {
+        nome: "Shiryu de dragão",
+        atributos: {
+            ataque: 5,
+            defesa: 9,
+            magia: 10
+        }
+    }
+
+    var cartas = [carta1, carta2, carta3];
+    var cartaMaquina;
+    var cartaJogador;
+
+    function sortearCarta(){
+        var numeroCartaMaquina = parseInt(Math.random() * 3);
+        cartaMaquina = cartas[numeroCartaMaquina];
+
+        var numeroCartaJogador = parseInt(Math.random() * 3);
+        while(numeroCartaJogador == numeroCartaMaquina){
+            var numeroCartaJogador = parseInt(Math.random() * 3);
+        }
+        cartaJogador = cartas[numeroCartaJogador]; 
+        console.log(cartaJogador);
+
+        document.getElementById("btnSortear").disabled = true;
+        document.getElementById("btnJogar").disabled = false;
+
+        exibirOpcoes();
+    }
+
+    function exibirOpcoes(){
+        var opcoes = document.getElementById("opcoes");
+        var opcoesTexto = "";
+        for(var atributo in cartaJogador.atributos){
+            opcoesTexto += "<input type='radio' name='atributo' value='" + atributo + "'>";
+            opcoesTexto += atributo;
+        }
+        opcoes.innerHTML = opcoesTexto;
+    }
+
+    function jogar(){
+        var atributoSelecionado = obtemAtributoSelecionado();
+        var elementoResultado = document.getElementById("resultado");
+        var valorCartaJogador = cartaJogador.atributos[atributoSelecionado];
+        var valorCartaMaquina = cartaMaquina.atributos[atributoSelecionado];
+
+        console.log(valorCartaJogador);
+        if(valorCartaJogador > valorCartaMaquina){
+            elementoResultado.innerHTML = "Você venceu!";
+        }else if(valorCartaJogador < valorCartaMaquina){
+            elementoResultado.innerHTML = "Você perdeu!";
+        }else{
+            elementoResultado.innerHTML = "Empatou!";
+        }
+        console.log("O valor do atributo da carta da máquina era " + valorCartaMaquina);
+    }
+
+    function obtemAtributoSelecionado(){
+        var radioAtributos = document.getElementsByName("atributo");
+
+        for(var i = 0; i < radioAtributos.length; i++){
+            if(radioAtributos[i].checked == true){
+                return radioAtributos[i].value;
+            }
+        }
+    }
+</script>
+</html>

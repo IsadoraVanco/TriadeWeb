@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela de classificações</title>
+</head>
+<body>
+    <h1 class="page-title">Tabela de Pontuações</h1>
+
+    <div class="container">
+        <table style="width:100%">
+            <thead>
+                <tr>
+                    <th>Jogador</th>
+                    <th>Vitórias (x3 pts)</th>
+                    <th>Derrotas (-1 pts)</th>
+                    <th>Pontos</th>
+                    <th>Adicionar</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaJogadores"></tbody>
+        </table>
+        <br>
+        <button onclick="adicionarJogador()" id="adicionarJogador"> + </button>
+    </div>
+    
+</body>
+<style>
+    body{
+        font-family: monospace;
+        background-image: url("https://a-static.mlcdn.com.br/574x431/papel-de-parede-tabuas-madeira-horizontal-marrom-avermelhado-seller-mix/mixshow/7306688985/f68d92a96ee15f2b81db15ba7bb8e3da.jpg");
+        background-color:rgb(181, 126, 79);
+        background-size: 50%;
+        background-position: top;
+        background-repeat:repeat;
+        margin:20px;
+        text-align: center;
+    }
+
+    .container{
+        text-align: center;
+        padding: 20px;
+        max-width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .page-title{
+        color:white;
+        margin: 0 0 5px;
+        text-shadow: black 5px 5px 10px;
+    }
+
+    table{
+        border: 2px solid white;
+        border-collapse: collapse;
+    }
+
+    h1{
+        color:white;
+        font-size: 30px;
+    }
+
+    th, tr, td{
+        border: 2px solid white;
+        color:white;
+        padding: 10px 5px;
+        font-size: 20px;
+        text-shadow: black 5px 5px 10px;
+    }
+
+    button{
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        color:black;
+        font-size: 15px;
+        padding: 5px 20px;
+    }
+
+    #vitorias{
+        background-color: #3beb4a;
+    }
+
+    #adicionarJogador {
+        font-size: 30px;
+        padding: 5px 15px;
+        border-radius: 20%;
+        margin-right: 100%;
+    }
+
+</style>
+<script>
+    var jogadores = [];
+
+    function adicionarJogador(){
+        var novoJogador = {
+            nome:"",
+            vitorias: 0,
+            derrotas: 0,
+            pontos: 0,
+            cor: ""
+        }
+        
+        if(jogadores.length == 0){
+            novoJogador.nome = "Jogador 1";
+        }else{
+            novoJogador.nome = "Jogador " + (jogadores.length + 1);
+        }
+
+        novoJogador.cor = geraNovaCor();
+        jogadores.push(novoJogador);
+        exibeJogadores(jogadores);
+    }
+
+    function adicionarDerrota(indice){
+        var jogador = jogadores[indice];
+        jogador.derrotas++;
+        jogador.pontos = calculaPontos(jogador);
+        exibeJogadores(jogadores);
+    }
+
+    function adicionarVitoria(indice){
+        var jogador = jogadores[indice];
+
+        for(var i = 0; jogadores.length > i; i++){
+            if(jogadores[i] == jogador){
+                jogadores[i].vitorias++;
+            }else{
+                jogadores[i].derrotas++;
+            }
+            jogadores[i].pontos = calculaPontos(jogadores[i]);
+        }
+
+        exibeJogadores(jogadores);
+    }
+
+    function calculaPontos(jogador){
+        var pontos = (jogador.vitorias * 3) - jogador.derrotas; 
+        return pontos;
+    }
+
+    function exibeJogadores(jogadores){
+        var elemento = "";
+        for(var i = 0; i < jogadores.length; i++){
+            elemento += "<tr><td style='font-weight: bold; background-color: "+ jogadores[i].cor + "'>" + jogadores[i].nome + "</td>";
+            elemento += "<td>" + jogadores[i].vitorias + "</td>";
+            elemento += "<td>" + jogadores[i].derrotas + "</td>";
+            elemento += "<td>" + jogadores[i].pontos + "</td>";
+            elemento += "<td><button onclick='adicionarVitoria(" + i + ")' id='vitorias'>Vitória</button></td><tr>"
+        }
+
+        var divTabela = document.getElementById("tabelaJogadores");
+        divTabela.innerHTML = elemento;
+    }
+
+    function geraNovaCor(){
+        var r = parseInt(Math.random() * 255);
+        var g = parseInt(Math.random() * 255);
+        var b = parseInt(Math.random() * 255);
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+</script>
+</html>

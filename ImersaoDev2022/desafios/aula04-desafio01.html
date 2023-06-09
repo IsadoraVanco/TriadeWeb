@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isaflix :)</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Isaflix :)</h1>
+        <img src="https://www.alura.com.br/assets/img/imersoes/dev-2021/logo-imersao-aluraflix.svg" class="page-logo" alt="">
+        <p>Adicione aqui o link da capa da mídia</p>
+        <input type="text" id="links">
+        <button onclick="adicionar()">Adicionar</button>
+        <p id="avisos"></p>
+        <div id="catalogo"></div>
+    </div>
+</body>
+<style>
+    body{
+        font-family: "Roboto Mono", monospace;
+        text-align: center;
+        background-image: url("https://www.alura.com.br/assets/img/imersoes/dev-2021/dia-04-aluraflix-e-filmes.png");
+        background-color:black;
+        background-size: cover;
+        background-position: center top;
+        background-repeat: no-repeat;
+    }
+
+    .container{
+        text-align: center;
+        padding: 20px;
+    }
+
+    .page-title{
+        color: white;
+        margin: 0 0 5px;
+    }
+
+    .page-subtitle{
+        color: white;
+        margin-top: 5px;
+    }
+
+    .page-logo{
+        width: 200px;
+    }
+
+    body > img{
+        margin: 0 10px;
+    }
+
+    img{
+        max-height: 250px;  
+    }
+
+    p{
+        color:white;
+        font-size: 24px;
+    }
+
+    input{
+        margin: 4px;
+        padding: 6px;
+        border-radius: 5px;
+        border: none;
+    }
+
+    #avisos{
+        font-size: 20px;
+        color:#ee0000;
+        text-shadow: -2px 2px 10px black;
+    }
+
+    button{
+        margin-top: 12px;
+        padding: 4px 8px;
+        border-radius: 10px;
+        background: #ee0000;
+        border: none;
+        color: white;
+        font-size: 15px;
+    }
+</style>
+<script>
+    var listaFilmes = [];
+
+    function adicionar(){
+        var divInput = document.getElementById("links");
+        var linkInserido = divInput.value;
+
+        var divAvisos = document.getElementById("avisos");
+        divAvisos.innerHTML = "";
+
+        var divCatalogo = document.getElementById("catalogo");
+
+        if(listaFilmes.indexOf(linkInserido) >= 0){
+            divAvisos.innerHTML = "O link inserido foi adicionado anteriormente";
+        }else{
+            var eImagem = verificaImagem(linkInserido);
+            if(eImagem){
+                listaFilmes.push(linkInserido);
+                //gambiarra :)
+                var tagsImg = [];
+                for(var i = 0; i < listaFilmes.length; i++){
+                    tagsImg.push("<img src=" + listaFilmes[i] + ">");
+                }
+                divCatalogo.innerHTML = tagsImg;
+            }else{
+                if(linkInserido == ""){
+                    divAvisos.innerHTML = "Digite um link";
+                }else{
+                    divAvisos.innerHTML = "O link inserido não é compatível (SVG, JPG, PNG)";
+                }
+            }
+        }
+    }
+
+    function verificaImagem(link){
+        var compativel = false;
+        var formato = link.slice(-3, link.length + 1)
+
+        if(formato == "png" || formato == "jpg" || formato == "png"){
+            compativel = true;
+        }
+        return compativel;
+    }
+</script>
+</html>

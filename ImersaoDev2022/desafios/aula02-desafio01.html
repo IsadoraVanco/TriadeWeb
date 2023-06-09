@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de temperatura</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="page-title">Conversor de temperatura</h1>
+        <p class="page-subtitle">Descubra os valores convertidos</p>
+        <br><br>
+        <label for="valor">Insira o valor</label><br>
+        <input type="number" id="valor" size="2" /><br>
+        <label for="converterDe">Converter de </label>
+        <select id="temperaturaOrigem">
+            <option selected disabled value="">Selecione</option>
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select><br><br>
+        <label for="converterPara">Para </label>
+        <select id="temperaturaFinal">
+            <option selected disabled value="">Selecione</option>
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select><br><br>
+        <button type="submit" onclick="converter()">Converter</button><br><br>
+        <div id="valorConvertido"></div>
+    </div>
+</body>
+<style>
+    body{
+        font-family: "Roboto Mono", monospace;
+        min-height: 350px;
+        background-image:url("https://img.freepik.com/fotos-gratis/termometro-exibindo-altas-temperaturas-de-40-graus-no-sol-dia-de-verao_71756-2202.jpg?size=626&ext=jpg");
+        background-color: #063b05;
+        background-size: 170vh;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    .container{
+        text-align: center;
+        padding: 20px;
+        height: 100vh;
+    }
+
+    .page-title{
+        color: #e9da57;
+        margin: 0 0 5px;
+    }
+
+    .page-subtitle{
+        color: white;
+        margin-top: 5px;
+        font-size: 2vh;
+    }
+
+    input{
+        margin: 12px;
+        padding: 6px;
+        border-radius: 5px;
+    }
+
+    label{
+        color: white;
+    }
+
+    button{
+        margin-top: 12px;
+        padding: 4px 8 px;
+        border-radius: 10px;
+        background: white;
+        font-size: 2vh;
+    }
+
+    h2{
+        color: white;
+        font-size: 30px;
+    }
+
+    #valorConvertido{
+        color: white;
+        margin-top: 10px;
+        font-size: 30px;
+    }
+
+    select{
+        border-radius: 5px;
+        font-family: monospace;
+        font-size: 2vh;
+        background-color: #e9da57;
+    }
+</style>
+<script>
+    function converter(){
+        var divResultado = document.getElementById("valorConvertido");
+        var temperaturaFinal = retornaFinal();
+        var valorInserido = retornaValor();
+        var resultado;
+
+        if(valorInserido == ""){
+            resultado = "Insira um valor válido";
+        }else if(temperaturaFinal == ""){
+            resultado = "Selecione a conversão";
+        }else if(temperaturaFinal == "celsius"){
+            resultado = calculaParaCelsius(valorInserido);
+        }else if(temperaturaFinal == "kelvin"){
+            resultado = calculaParaKelvin(valorInserido);
+        }else if(temperaturaFinal == "fahrenheit"){
+            resultado = calculaParaFahrenheit(valorInserido);
+        }
+        divResultado.innerHTML = resultado;
+    }
+
+    function retornaOrigem(){
+        var divOrigem = document.getElementById("temperaturaOrigem");
+        var temperaturaOrigem = divOrigem.value;
+        return temperaturaOrigem;
+    }
+
+    function retornaFinal(){
+        var divFinal = document.getElementById("temperaturaFinal");
+        var temperaturaFinal = divFinal.value;
+        return temperaturaFinal;
+    }
+
+    function retornaValor(){
+        var divInput = document.getElementById("valor");
+        var valor = divInput.value;
+        return valor;
+    }
+
+    function calculaParaCelsius(valor){
+        valor = parseInt(valor);
+        var temperaturaOrigem = retornaOrigem();
+        var valorFinal;
+        if(temperaturaOrigem == "fahrenheit"){
+            valorFinal = (valor - 32) * (5/9);
+        }else if(temperaturaOrigem == "kelvin"){
+            valorFinal = valor - 273;
+        }else{
+            valorFinal = valor;
+        }
+        return valorFinal.toFixed(1) + " °C";
+    }
+
+    function calculaParaKelvin(valor){
+        valor = parseInt(valor);
+        var temperaturaOrigem = retornaOrigem();
+        var valorFinal;
+        if(temperaturaOrigem == "fahrenheit"){
+            valorFinal = (valor - 32) * (5/9) + 273;
+        }else if(temperaturaOrigem == "celsius"){
+            valorFinal = valor + 273;
+        }else{
+            valorFinal = valor;
+        }
+        return valorFinal.toFixed(1) + " K";
+    }
+
+    function calculaParaFahrenheit(valor){
+        valor = parseInt(valor);
+        var temperaturaOrigem = retornaOrigem();
+        var valorFinal;
+        if(temperaturaOrigem == "celsius"){
+            valorFinal = (valor * 9 + 160) / 5;
+        }else if(temperaturaOrigem == "kelvin"){
+            valorFinal = (valor - 273) * (9/5) + 32;
+        }else{
+            valorFinal = valor;
+        }
+        return valorFinal.toFixed(1) + " °F";
+    }
+</script>
+</html>
