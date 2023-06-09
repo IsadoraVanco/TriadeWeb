@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 02 | Variáveis</title>
+</head>
+<body style="font-family: monospace;">
+    <h1>7 Days of Code</h1>
+    <h2>Variáveis</h2>
+    <br>
+    <p>Qual o seu nome?</p>
+    <input id="nome" type="text" placeholder="Nome" required>
+    <P>Qual a sua idade?</P>
+    <input id="idade" type="number" placeholder="Idade" required>
+    <p>Qual a linguagem de programação você está estudando?</p>
+    <input id="linguagem" type="text" placeholder="Linguagem" required>
+    <button id="ok" type="submit" onclick="confirmar()">OK</button>
+    <br><hr><br>
+    <div id="resposta"></div>
+    <button id="sim" hidden="true" onclick="gostar()">Sim</button> 
+    <button id="nao" hidden="true" onclick="naoGostar()">Não</button>
+    <div id="gostaOuNao"></div>
+</body>
+<script>
+    function confirmar(){
+        var nome = document.getElementById("nome").value;
+        var idade = document.getElementById("idade").value;
+        var linguagem = document.getElementById("linguagem").value;
+        
+
+        var divResposta = document.getElementById("resposta");
+        if(nome == "" || idade == "" || linguagem == ""){
+            divResposta.innerHTML = "Por favor, preencha tudo corretamente."
+        }else{
+            document.getElementById("ok").disabled = true;
+            divResposta.innerHTML = `<p>Olá ${nome}, você tem ${idade} anos e já está aprendendo ${linguagem}!</p>
+            <p>Agora responda: Você gosta de estudar essa linguagem?</p>`;
+            document.getElementById("sim").hidden = false;
+            document.getElementById("nao").hidden = false;
+        } 
+    }
+
+    function gostar(){
+        document.getElementById("nao").hidden = true;
+        var divGosta = document.getElementById("gostaOuNao").innerHTML = "Muito bom! Continue estudando e você terá muito sucesso :)";
+    }
+
+    function naoGostar(){
+        document.getElementById("sim").hidden = true;
+        var divGosta = document.getElementById("gostaOuNao").innerHTML = "Ahh que pena... Já tentou aprender outras linguagens? :)";
+    }
+</script>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 07 | Funções</title>
+</head>
+<body>
+    <h1>7 Days of Code</h1>
+    <h2>Funções</h2>
+    <p><a class="material" target="_blank" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions?utm_source=ActiveCampaign&utm_medium=email&utm_content=%237DaysOfCode+-+L%C3%B3gica+JS+7%2F7%3A+Fun%C3%A7%C3%B5es+em+Javascript&utm_campaign=%5BALURA+%237days+Of+Code%5D+%28L%C3%B3gica+de+Programa%C3%A7%C3%A3o+-+JavaScript%29+Dia+7%3A+Fun%C3%A7%C3%B5es+em+Javascript">Material de apoio sobre funções</a></p>
+    <p><a class="material" target="_blank" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Statements/switch?utm_source=ActiveCampaign&utm_medium=email&utm_content=%237DaysOfCode+-+L%C3%B3gica+JS+7%2F7%3A+Fun%C3%A7%C3%B5es+em+Javascript&utm_campaign=%5BALURA+%237days+Of+Code%5D+%28L%C3%B3gica+de+Programa%C3%A7%C3%A3o+-+JavaScript%29+Dia+7%3A+Fun%C3%A7%C3%B5es+em+Javascript">Material de apoio sobre switch</a></p>
+    <section id="container">
+        <div id="result" class="lines"></div>
+        <div class="lines">
+            <button id="allClean" class="others">AC</button>
+            <button id="factorial" class="function">!</button>
+            <button id="exponential" class="function">^</button>
+            <button id="divided" class="function">÷</button>
+        </div>
+        <div class="lines">
+            <button id="seven" class="number">7</button>
+            <button id="eight" class="number">8</button>
+            <button id="nine" class="number">9</button>
+            <button id="times" class="function">x</button>
+        </div>
+        <div class="lines">
+            <button id="four" class="number">4</button>
+            <button id="five" class="number">5</button>
+            <button id="six" class="number">6</button>
+            <button id="minus" class="function">-</button>
+        </div>
+        <div class="lines">
+            <button id="three" class="number">3</button>
+            <button id="two" class="number">2</button>
+            <button id="one" class="number">1</button>
+            <button id="plus" class="function">+</button>
+        </div>
+        <div class="lines">
+            <button id="point" class="others">.</button>
+            <button id="zero" class="number">0</button>
+            <button id="clean" class="others">C</button>
+            <button id="equals" class="equals">=</button>
+        </div>
+    </section>
+</body>
+<style> 
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+    body{
+        font-family: 'Quicksand', sans-serif;
+        color: white; 
+        background-color: rgb(68, 67, 67);
+        margin: 10px;
+    }
+
+    .material{
+        color: white;
+    }
+
+    #container{
+        width: 240px;
+        border: 2px solid #cdcdcd;
+        border-radius: 10px;
+        padding: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    #result{
+        height: 50px;
+        background: #cdcdcd;
+        border-radius: 15px;
+        margin-bottom: 10px;
+        color: black;
+    }
+
+    .lines{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    button{
+        border: none;
+        border-radius: 15px;
+        margin:2px;
+        height: 50px;
+        width: 50px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .others{
+        background: #398E8F;
+    }
+
+    .function{
+        background: #01F570;
+    }
+
+    .number{
+        background: #13BFC2;
+    }
+
+    .equals{
+        background: #C2138E;
+    }
+</style>
+<script>
+    // usar switch 
+    // cada operação como função
+    
+    function cleanAll(){
+        result = [];
+        refresh();
+    }
+
+    function factorial(){
+        result.push("!");
+        refresh();
+    }
+
+    function exponential(){
+        result.push("^");
+        refresh();
+    }
+
+    function divided(){
+        result.push("÷");
+        refresh();
+    }
+
+    function addSeven(){
+        result.push("7");
+        refresh();
+    }
+
+    function addEight(){
+        result.push("8");
+        refresh();
+    }
+
+    function addNine(){
+        result.push("9");
+        refresh();
+    }
+
+    function times(){
+        result.push("x");
+        refresh();
+    }
+
+    function addFour(){
+        result.push("4");
+        refresh();
+    }
+    
+    function addFive(){
+        result.push("5");
+        refresh();
+    }
+    
+    function addSix(){
+        result.push("6");
+        refresh();
+    }
+
+    function minus(){
+        result.push("-");
+        refresh();
+    }
+
+    function addThree(){
+        result.push("3");
+        refresh();
+    }
+
+    function addTwo(){
+        result.push("2");
+        refresh();
+    }
+
+    function addOne(){
+        result.push("1");
+        refresh();
+    }
+
+    function plus(){
+        result.push("+");
+        refresh();
+    }
+
+    function addPoint(){
+        result.push(".");
+        refresh();
+    }
+
+    function addZero(){
+        result.push("0");
+        refresh();
+    }
+
+    function cleanKey(){
+        result.pop();
+        refresh();
+    }
+
+    //usar switch
+    /*function equals(){
+        var temp = result;
+        var sentence;
+        while(temp.length > 0){
+            switch(temp[0]){
+                case "0":
+                    sentence 
+
+
+            }
+        }
+        refresh();
+    }*/
+
+    function refresh(){
+        // checkTheresFunction();
+        console.log(result);
+        divResult.innerHTML = result;
+    }
+
+    function checkTheresFunction(){
+        if(operations.indexOf(result[result.length-1]) > -1 && operations.indexOf(result[result.length-2]) > -1){
+            result.splice(result[result.length-2], 1);
+        }
+    }
+</script>
+</html>

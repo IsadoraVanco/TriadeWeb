@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 05 | Arrays e coleções</title>
+</head>
+<body style="font-family: monospace; color: white; background-color: rgb(68, 67, 67)">
+    <h1>7 Days of Code</h1>
+    <h2>Arrays e coleções</h2>
+    <p><a target="_blank" style="text-decoration: none; color: white" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array?utm_source=ActiveCampaign&utm_medium=email&utm_content=%237DaysOfCode+-+L%C3%B3gica+JS+5%2F7%3A+Arrays+e+cole%C3%A7%C3%B5es&utm_campaign=%5BALURA+%237days+Of+Code%5D+%28L%C3%B3gica+de+Programa%C3%A7%C3%A3o+-+JavaScript%29+Dia+5%3A+Arrays+e+cole%C3%A7%C3%B5es">Material de apoio</a></p>
+    <p>Vamos fazer sua lista de compras!</p>
+    <p>Adicione o produto:</p>
+    <input id="produto">
+    <p>Selecione a categoria:</p>
+    <div>
+        <input type="radio" name="categoria" id="laticinio" checked>Laticínio
+        <input type="radio" name="categoria" id="horti-fruti">Horti-Fruti
+        <input type="radio" name="categoria" id="congelados">Congelados
+        <input type="radio" name="categoria" id="doces">Doces
+        <input type="radio" name="categoria" id="carnes">Carnes
+        <input type="radio" name="categoria" id="poicalias">Poicalias
+        <input type="radio" name="categoria" id="bebidas">Bebidas
+        <input type="radio" name="categoria" id="bazar">Bazar
+        <input type="radio" name="categoria" id="higiene">Higiene
+        <input type="radio" name="categoria" id="casa">Para a casa
+    </div><br>
+    <button id="adicionar" onclick="adicionar()">Adicionar</button><button id="finalizar" onclick="finalizar()" hidden="true">Finalizar</button>
+    <div id="resposta"></div>
+   
+</body>
+<script>
+    var laticinios = [];
+    var hortifruti = [];
+    var congelados = [];
+    var doces = [];
+    var carnes = [];
+    var poicalias = [];
+    var bebidas = [];
+    var bazar  = [];
+    var higiene = [];
+    var casa = [];
+
+    var divResposta = document.getElementById("resposta");
+
+    function adicionar(){
+        var produto = document.getElementById("produto").value;
+        divResposta.innerHTML = "";
+
+        if(produto == ""){
+            divResposta.innerHTML = "<p>Adicione o produto!</p>";
+        }else{
+            var jaAdicionado = verificaAdicionado(produto);
+            if(jaAdicionado == false){
+                adicionaCategoria(produto);
+                document.getElementById("finalizar").hidden = false;
+            }
+        }
+    }
+    
+    function finalizar(){
+        document.getElementById("adicionar").disabled = true;
+        divResposta.innerHTML = "";
+        var listas = "";
+
+        if(laticinios.length > 0){
+            listas += "<h3>Laticínios</h3>";
+            for(var i = 0; i < laticinios.length; i++){
+                listas += `<li>${laticinios[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(hortifruti.length > 0){
+            listas += "<h3>Horti-Fruti</h3>";
+            for(var i = 0; i < hortifruti.length; i++){
+                listas += `<li>${hortifruti[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(congelados.length > 0){
+            listas += "<h3>Congelados</h3>";
+            for(var i = 0; i < congelados.length; i++){
+                listas += `<li>${congelados[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(doces.length > 0){
+            listas += "<h3>Doces</h3>";
+            for(var i = 0; i < doces.length; i++){
+                listas += `<li>${doces[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(carnes.length > 0){
+            listas += "<h3>Carnes</h3>";
+            for(var i = 0; i < carnes.length; i++){
+                listas += `<li>${carnes[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(poicalias.length > 0){
+            listas += "<h3>Poicalias</h3>";
+            for(var i = 0; i < poicalias.length; i++){
+                listas += `<li>${poicalias[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(bebidas.length > 0){
+            listas += "<h3>Bebidas</h3>";
+            for(var i = 0; i < bebidas.length; i++){
+                listas += `<li>${bebidas[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(bazar.length > 0){
+            listas += "<h3>Bazar</h3>";
+            for(var i = 0; i < bazar.length; i++){
+                listas += `<li>${bazar[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(higiene.length > 0){
+            listas += "<h3>Higiene</h3>";
+            for(var i = 0; i < higiene.length; i++){
+                listas += `<li>${higiene[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        if(casa.length > 0){
+            listas += "<h3>Para a casa</h3>";
+            for(var i = 0; i < casa.length; i++){
+                listas += `<li>${casa[i]}</li>`;
+            }
+            listas += "<br>";
+        }
+
+        divResposta.innerHTML = listas;
+    }
+
+    function adicionaCategoria(produto){
+        var divLaticinios = document.getElementById("laticinio").checked;
+        var divHortiFruti = document.getElementById("horti-fruti").checked;
+        var divCongelados = document.getElementById("congelados").checked;
+        var divDoces = document.getElementById("doces").checked;
+        var divCarnes = document.getElementById("carnes").checked;
+        var divPoicalias = document.getElementById("poicalias").checked;
+        var divBebidas = document.getElementById("bebidas").checked;
+        var divBazar = document.getElementById("bazar").checked;
+        var divHigiene = document.getElementById("higiene").checked;
+        var divCasa = document.getElementById("casa").checked;
+
+        if(divLaticinios){
+            laticinios.push(produto);
+        }else if(divHortiFruti){
+            hortifruti.push(produto);
+        }else if(divCongelados){
+            congelados.push(produto);
+        }else if(divDoces){
+            doces.push(produto);
+        }else if(divCarnes){
+            carnes.push(produto);
+        }else if(divPoicalias){
+            poicalias.push(produto);
+        }else if(divBebidas){
+            bebidas.push(produto);
+        }else if(divBazar){
+            bazar.push(produto);
+        }else if(divHigiene){
+            higiene.push(produto);
+        }else if(divCasa){
+            casa.push(produto);
+        }else{
+            console.error("Categoria não selecionada");
+        }
+    }
+
+    function verificaAdicionado(produto){
+        if(laticinios.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Laticínio</p>";
+            return true;
+        }else if(hortifruti.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Horti-Fruti</p>";
+            return true;
+        }else if(congelados.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Congelados</p>";
+            return true;
+        }else if(doces.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Doces</p>";
+            return true;
+        }else if(carnes.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Carnes</p>";
+            return true;
+        }else if(poicalias.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Poicalias</p>";
+            return true;
+        }else if(bebidas.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Bebidas</p>";
+            return true;
+        }else if(bazar.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Bazar</p>";
+            return true;
+        }else if(higiene.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Higiene</p>";
+            return true;
+        }else if(casa.indexOf(produto) >= 0){
+            divResposta.innerHTML = "<p>Produto já adicionado em Casa</p>";
+            return true;
+        }else{
+            return false;
+        }
+    }
+</script>
+</html>

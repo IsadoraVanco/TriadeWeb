@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 04 | Mais loops e randomização</title>
+</head>
+<body style="font-family: monospace; color: white; background-color: rgb(68, 67, 67)">
+    <h1>7 Days of Code</h1>
+    <h2>Mais loops e randomização v1.0</h2>
+    <p><a target="_blank" style="text-decoration: none; color: white" href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Loops_and_iteration?utm_source=ActiveCampaign&utm_medium=email&utm_content=%237DaysOfCode+-+L%C3%B3gica+JS+4%2F7%3A+%F0%9F%91%A9%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB+Mais+loops+e+randomiza%C3%A7%C3%A3o&utm_campaign=%5BALURA+%237days+Of+Code%5D+%28L%C3%B3gica+de+Programa%C3%A7%C3%A3o+-+JavaScript%29+Dia+4%3A+Mais+loops+e+randomiza%C3%A7%C3%A3o">Material de apoio</a></p>
+    <p>Olá, Dev! Hoje vamos brincar de adivinhar o número!</p>
+    <p>Porém, nesta versão, temos um número pré-definido, então será mais facil :)</p><br>
+    <p>Dê seu palpite: (0 a 10)</p>
+    <input type="number" id="chute">
+    <button onclick="chutar()" id="btnChute">Chutar!</button>
+    <div id="resultado"></div>
+</body>
+<script>
+    var numeroSecreto = 8;
+    var palpites = 3;
+    console.log("Ei! Seu espertinho! Está trapaceando... o número secreto é " + numeroSecreto);
+
+    function chutar(){
+        var chute = document.getElementById("chute").value;
+        var divResultado = document.getElementById("resultado");
+
+        if(chute == ""){
+            divResultado.innerHTML = "<p>Digite um número!</p>";
+        }else{
+            palpites--;
+            analisaResposta();
+        }
+    }
+
+    function analisaResposta(){
+        var divResultado = document.getElementById("resultado");
+        var chute = document.getElementById("chute").value;
+        var resposta = "";
+
+        if(chute == numeroSecreto){
+            resposta = "<p>Parabéns! Você descobriu o número secreto!</p>";
+            document.getElementById("btnChute").disabled = true;
+        }else{
+            resposta = "<p>Errado!</p>";
+
+            if(palpites > 0){
+                resposta += `<p>Você ainda possui ${palpites} palpites</p>`;
+            }else{
+                resposta += "<p>Fim de jogo! Seus palpites acabaram!</p>";
+                document.getElementById("btnChute").disabled = true;
+            }
+        }
+        divResultado.innerHTML = resposta;
+    }
+    
+</script>
+</html>

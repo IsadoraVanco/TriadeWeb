@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 03 | Fluxo de Decisão</title>
+</head>
+<body style="font-family: monospace; color: white; background-color: rgb(68, 67, 67)">
+    <h1>7 Days of Code</h1>
+    <h2>Fluxo de Decisão</h2>
+    <p>Olá, Dev! Bem-vind@ a mais um desafio!</p>
+    <p>Hoje embarcaremos em uma série de perguntas que serão essenciais para a sua carreira.</p>
+    <p>Vamos nessa? Comece respondendo o mais básico:</p><br>
+    <p>Para a sua carreira, você tem preferência na stack:</p>
+    <button onclick="escolheFront()" id="btnFront">Front-End</button><button onclick="escolheBack()" id="btnBack">Back-End</button><br>
+    <div id="stack"></div>
+    <div id="front">
+        <button onclick="escolheReact()" id="react" hidden="true">React Native</button><button onclick="escolheVue()" id="vue" hidden="true">Vue JS</button>
+    </div>
+    <div id="back">
+        <button onclick="escolheJava()" id="java" hidden="true">Java</button><button onclick="escolheC()" id="cSharp" hidden="true">C#</button>
+    </div>
+    <div id="especializacao"></div>
+    <div id="btnEspecializacao">
+        <button onclick="escolheEspecializar()" id="especializar" hidden="true">Especializar</button><button onclick="escolheFull()" id="full" hidden="true">Full Stack</button>
+    </div>
+    <div id="fullStack"></div>
+    <div id="tecnologias"></div>
+    <div>
+        <button id="ok" hidden="true" onclick="ok()">Ok</button><button id="adicionar" onclick="adicionar()" title="Adicionar Mais" hidden="true">+</button>
+    </div>
+    <div id="conclusao"></div>
+    
+</body>
+<script>
+    var tecnologias = [];
+
+    function escolheFront(){
+        document.getElementById("btnBack").hidden = true;
+        var divStack = document.getElementById("stack");
+        
+        document.getElementById("react").hidden = false;
+        document.getElementById("vue").hidden = false;
+        divStack.innerHTML = "<p>Entre os frameworks de Front-End, você prefere:</p>";
+    }
+
+    function escolheReact(){
+        document.getElementById("vue").hidden = true;
+        fullOuEspecializar();
+    }
+
+    function escolheVue(){
+        document.getElementById("react").hidden = true;
+        fullOuEspecializar();
+    }
+
+    function escolheBack(){
+        document.getElementById("btnFront").hidden = true;
+        var divStack = document.getElementById("stack");
+        
+        document.getElementById("java").hidden = false;
+        document.getElementById("cSharp").hidden = false;
+        divStack.innerHTML = "<p>Entre os frameworks de Back-End, você prefere:</p>";
+    }
+
+    function escolheC(){
+        document.getElementById("java").hidden = true;
+        fullOuEspecializar();
+    }
+
+    function escolheJava(){
+        document.getElementById("cSharp").hidden = true;
+        fullOuEspecializar();
+    }
+
+    function fullOuEspecializar(){
+        document.getElementById("full").hidden = false;
+        document.getElementById("especializar").hidden = false;
+
+        var divEspecializacao = document.getElementById("especializacao");
+        divEspecializacao.innerHTML = "<p>Por último, prefere se especializar em alguma(s) tecnologia(s) ou se tornar um Full Stack?</p>";
+    }
+
+    function escolheEspecializar(){
+        document.getElementById("full").hidden = true;
+        
+        var divEspecializar = document.getElementById("tecnologias");
+        divEspecializar.innerHTML = '<p>Digite aqui o framework desejado:</p><input id="framework">';
+        document.getElementById("ok").hidden = false;
+    }
+
+    function escolheFull(){
+        document.getElementById("especializar").hidden = true;
+        
+        var divFull = document.getElementById("fullStack");
+        divFull.innerHTML = "<p>Você terá que estudar muita coisa. Boa sorte!! :)</p>"
+    }
+
+    function ok(){
+        if(tecnologias.length == 0){
+            adicionar();
+            document.getElementById("adicionar").hidden = false;
+        }else{
+            document.getElementById("adicionar").hidden = true;
+            var divConclusao = document.getElementById("conclusao");
+            divConclusao.innerHTML = `<p>Muito bem! Em breve você aprenderá ${tecnologias}! Continue estudando e boa sorte! :)</p>`;
+        }
+    }
+
+    function adicionar(){
+        var divConclusao = document.getElementById("conclusao");
+        var resposta = document.getElementById("framework").value;
+
+        if(resposta == ""){
+            divConclusao.innerHTML = "<p>Por favor, insira um framework.</p>"
+        }else if(tecnologias.indexOf(resposta) >= 0){
+            divConclusao.innerHTML = "<p>Framework já adicionado.</p>"
+        }else{
+            tecnologias.push(resposta);
+            divConclusao.innerHTML = "<p>Gostaria de adicionar outro a sua lista de aprendizado? Se sim, adicione o nome e clique no +, se não, clique em OK para finalizar</p>"
+        }
+    }
+</script>
+</html>
