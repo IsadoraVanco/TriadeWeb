@@ -1,0 +1,32 @@
+<meta charset="UTF-8">
+<h1>Aula 09</h1>
+<h3>Atividade 06: Lista de ingredientes do Yan</h3>
+<script>
+
+	var ingredientes = [];
+    var quantidade = parseInt(prompt("Quantos ingredientes você vai adicionar?"));
+    var contador = 1;
+
+    while( contador <= quantidade) {
+
+        var ingrediente = prompt("Informe o ingrediente " + contador);
+        var achou = false;
+       	
+       	for(posicao = 0; posicao < ingredientes.length; posicao++ ){
+
+        	if(ingrediente == ingredientes[posicao]){
+        		
+        		achou = true;
+        		break;		
+        	}      	
+        }
+
+        if(achou == false){
+        	ingredientes.push(ingrediente);
+        	contador++;
+        }       
+    }
+
+    console.log(ingredientes);
+
+</script>

@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+<h1>Aula 04</h1>
+<h3>Atividade 04: O Problema das Gerações</h3>
+<script>
+	function pulaLinha() {
+		document.write("<br><br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var anosPassados = 2020 - 1500;
+	var geracoes = Math.round(anosPassados / 28); //Anos (média que um casal tem um filho)
+
+	mostra("Desde de 1500, se passaram " + anosPassados + " anos, e até o ano de 2020, se passaram  " + geracoes + " gerações.");
+</script>

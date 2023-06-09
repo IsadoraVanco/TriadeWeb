@@ -1,0 +1,73 @@
+<meta charset="UTF-8">
+<h1>Aula 06</h1>
+<h3>Atividade 03: Jogo da adivinhação v2.0</h3>
+<script>
+	
+	function pulaLinha() {
+		document.write("<br><br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	function sorteia(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	//versão do professor
+	//function sorteia(n) {
+	//	return Math.round(Math.random() * n);
+	//}
+
+	var nome = prompt("Olá, Bem-Vind@ ao Jogo da Adivinhação de números! Para começar, me diga o seu nome :)");
+	var escolhaMin = parseInt(prompt("Muito bem, " + nome + ", neste jogo você faz as regras, portanto, escolha qual o número mínimo para se sortear: "));
+	var escolhaMax = parseInt(prompt("Agora, o número máximo: "));
+	var numeroSorteado = sorteia(escolhaMin, escolhaMax);
+	console.log("Uma pequena trapaça para experientes. Resposta: " + numeroSorteado); // um pequeno cheat
+	var limiteChances = parseInt(prompt("E para a última configuração, quantas chances pretende ter?"));
+	var chances = 0;
+	var numeroChute = prompt("Começando, " + nome + "! Você terá " + limiteChances + " chances para acertar o número sorteado de " + escolhaMin + " á " + escolhaMax + ". Faça seu primeiro chute:");
+
+	while(numeroSorteado != numeroChute) {
+		
+		if(chances == limiteChances) {
+			break;
+		}
+
+		chances +=1; 
+
+		if(numeroChute > numeroSorteado && chances <= limiteChances) {
+			numeroChute = parseInt(prompt("Muito alto! Tente novamente:"));
+		}
+	
+		if(numeroChute < numeroSorteado  && chances <= limiteChances) {
+			numeroChute = parseInt(prompt("Muito baixo! Tente novamente:"));
+		}
+	}
+	
+	if(numeroSorteado != numeroChute) {
+		mostra("<big>Não foi dessa vez! Tente mais uma vez recarregando a página. :( </big>");
+		mostra("<big>O número sorteado foi " + numeroSorteado + "</big>");
+	}
+	
+	if(numeroSorteado == numeroChute) {
+
+		if(chances == 0) {
+		mostra("<big>Parabéns, " + nome + "! Você acertou de primeira!</big>");
+		}
+
+		if(chances == 1) {
+		mostra("<big>Parabéns, " + nome + "! Você acertou com uma única chance, muito bem. :)</big>");
+		}
+
+		if(chances != 0 && chances != 1) {
+		mostra("<big>Parabéns, " + nome + "! Você acertou com " + chances + " chances, nada mal. :)</big>");
+		}
+	}
+	
+	mostra("<hr>");
+	mostra("<big>Recarregue a página e jogue novamente! Até a próxima!</big>");
+
+</script>

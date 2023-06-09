@@ -1,0 +1,61 @@
+<meta charset="UTF-8">
+<h1>Aula 06</h1>
+<h3>Atividade 02: Jogo da adivinhação</h3>
+<script>
+	function pulaLinha() {
+		document.write("<br><br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var chances = 0;
+	var limiteChances = 3;
+	var numeroSorteado = Math.round(Math.random() * 10);
+	console.log("Uma pequena trapaça para experientes: " + numeroSorteado); // um pequeno cheat
+	var nome = prompt("Olá, Bem-Vind@ ao Jogo da Adivinhação! Para começar, me diga o seu nome :)");
+	var numeroChute = prompt("Muito bem, " + nome + ", você terá " + limiteChances + " chances, faça o seu chute de 1 á 10:");
+	
+	while(numeroSorteado != numeroChute) {
+		
+		if(chances == limiteChances) {
+			break;
+		}
+
+		chances +=1; 
+
+		if(numeroChute > numeroSorteado && chances <= limiteChances) {
+			numeroChute = parseInt(prompt("Muito alto! Tente novamente:"));
+		}
+	
+		if(numeroChute < numeroSorteado  && chances <= limiteChances) {
+			numeroChute = parseInt(prompt("Muito baixo! Tente novamente:"));
+		}
+	}
+	
+	if(numeroSorteado != numeroChute) {
+		mostra("<big>Não foi dessa vez! Tente mais uma vez recarregando a página. :( </big>");
+		mostra("<big>O número sorteado foi " + numeroSorteado + "</big>");
+	}
+	
+	if(numeroSorteado == numeroChute) {
+
+		if(chances == 0) {
+		mostra("<big>Parabéns, " + nome + "! Você acertou de primeira!</big>");
+		}
+
+		if(chances == 1) {
+		mostra("<big>Parabéns, " + nome + "! Você acertou com uma única chance, muito bem. :)</big>");
+		}
+
+		if(chances != 0 && chances != 1) {
+		mostra("<big>Parabéns, " + nome + "! Você acertou com " + chances + " chances, nada mal. :)</big>");
+		}
+	}
+	
+	mostra("<hr>");
+	mostra("<big>Recarregue a página e jogue novamente! Até a próxima!</big>");
+
+</script>

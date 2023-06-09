@@ -1,0 +1,23 @@
+<meta charset="UTF-8">
+<h1>Aula 06</h1>
+<h3>Atividade 03: Será que posso dirigir?</h3>
+<script>
+	function pulaLinha() {
+		document.write("<br><br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var idade = parseInt(prompt("Qual é sua idade?"));
+    var temCarteira = prompt("Tem carteira? Responda S(sim) ou N(não): em Maiúsculo, por favor, estou aprendendo >.<");
+
+    if(idade >= 18 && temCarteira == "S") {
+    	mostra("Parabéns! Você pode dirigir.");
+    } else {
+    	mostra("Você não pode dirigir.");
+    }
+
+</script>

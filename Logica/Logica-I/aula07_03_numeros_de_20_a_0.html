@@ -1,0 +1,24 @@
+<meta charset="UTF-8">
+<h1>Aula 07</h1>
+<h3>Atividade 03: Números de 20 a 0</h3>
+<script>
+	
+	function pulaLinha() {
+		document.write("<br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var contador = 20;
+	mostra("<big>Números decrescente de 20 á 0:</big>");
+	mostra("<hr>");
+
+	while(contador >= 0) {
+		mostra("-> " + contador);
+		contador -= 1;
+	}
+
+</script>

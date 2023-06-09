@@ -1,0 +1,49 @@
+<meta charset="UTF-8">
+<canvas width = "800" height = "400" ></canvas>
+<script>
+	
+	var tela = document.querySelector("canvas");
+	var pincel = tela.getContext("2d");
+	pincel.fillStyle = "lightgrey";
+	pincel.fillRect(0,0,1000,1000);
+
+	var quantidadeMaxima = 28;
+	var quantidadeQuadrados = parseInt(prompt("Bem vind@ ao Criando Frações! Faça uma fração para ajudar seu aluno a entender a matéria! Para começar, digite a quantidade total de quadrados que serão representados: (máx:" + quantidadeMaxima + ")"));
+
+	while(quantidadeQuadrados > quantidadeMaxima) {
+		quantidadeQuadrados = parseInt(prompt("Número de quadrados não suportado. Informe novamente a quantidade de quadrados:"));
+	}
+
+	var quadradosPreenchidos = parseInt(prompt("E qual será a quantidade de quadrados preenchidos?"));
+
+	while(quadradosPreenchidos > quantidadeQuadrados) {
+		quadradosPreenchidos = prompt("Número de quadrados não suportado. Informe novamente a quantidade de quadrados:");
+	}
+
+	function formaQuadrados(total, preenchidos) {
+		var x = 50;
+		for(var c = 1; c <= total; c++){
+			pincel.fillStyle = "white";
+			pincel.fillRect(x, 150, 25, 25);
+			pincel.strokeStyle = "black";
+			pincel.strokeRect( x, 150, 25, 25);
+			x = x + 25;
+		}
+		x = 50;
+		for(var c = 1; c <= preenchidos; c++){
+			pincel.fillStyle = "yellow";
+			pincel.fillRect(x, 150, 25, 25);
+			pincel.strokeStyle = "black";
+			pincel.strokeRect( x, 150, 25, 25);
+			x = x + 25;
+		}
+	}
+	
+	pincel.font = "25px Georgia";
+	pincel.fillStyle = "black";
+	pincel.fillText("Qual o valor da fração representada?", 50, 100);
+	formaQuadrados(quantidadeQuadrados, quadradosPreenchidos);
+
+	console.log(quadradosPreenchidos + "/" + quantidadeQuadrados);
+
+</script>

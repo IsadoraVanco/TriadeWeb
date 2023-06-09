@@ -1,0 +1,46 @@
+<canvas width="1200" height="800"></canvas>
+
+<script>
+    var tela = document.querySelector('canvas');
+    var pincel = tela.getContext('2d');
+    pincel.fillStyle = 'lightgrey';
+    pincel.fillRect(0, 0, 1200, 800);
+
+    var cores = ["white", "lightpink", "red", "orange", "yellow", "lightgreen", "green", "darkgreen", "darkblue", "blue", "lightblue", "purple", "black", "grey"];
+    var posicao = 0;
+    var tamanhoPincel = 10;
+
+   function mudaCor() {
+
+        posicao++;
+        if(posicao >= cores.length) {
+            posicao = 0;
+        }
+        return false;
+    }
+
+    function desenhaCirculo(evento) {
+
+        var x = evento.pageX - tela.offsetLeft;
+        var y = evento.pageY - tela.offsetTop;
+
+        pincel.fillStyle = cores[posicao];
+        pincel.beginPath();
+        if(evento.shiftKey){
+            tamanhoPincel = tamanhoPincel + 5;
+        }
+
+        if(tamanhoPincel >= 60){
+            tamanhoPincel = 10;
+        }
+        
+        pincel.arc(x, y, tamanhoPincel, 0, 2 * 3.14);
+        pincel.fill();
+        console.log(x + ',' + y);
+    }
+
+    alert("Clique com o botão esquerdo do mouse para desenhar o círculo, clique uma vez com o botão direito para alternar a cor, e mantenha a tecla SHIFT pressionada para aumentar o tamanho do círculo");
+    tela.onclick = desenhaCirculo;
+    tela.oncontextmenu = mudaCor;
+
+</script>

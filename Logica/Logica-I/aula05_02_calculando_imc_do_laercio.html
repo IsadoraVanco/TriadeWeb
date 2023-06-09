@@ -1,0 +1,22 @@
+<meta charset="UTF-8">
+<h1>Aula 05</h1>
+<h3>Atividade 02: Calculando IMC do Laércio</h3>
+<script>
+	function pulaLinha() {
+		document.write("<br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	function calculaImc(altura, peso) {
+
+        var imc = peso / (altura * altura);
+        return imc;
+    }
+
+    var imcCalculado = calculaImc(1.77, 75);
+    mostra("O meu IMC é : " + imcCalculado);
+</script>

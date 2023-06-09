@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+<h1>Aula 07</h1>
+<h3>Atividade 05: Simulando uma tela de login</h3>
+<script>
+
+	var loginCadastrado = "admin";
+    var senhaCadastrada = "exerciciodaaluraaula07";
+	document.write("<big>Carregando...</big>");
+	document.write("<hr>");
+	console.log("Login: " + loginCadastrado);
+	console.log("Senha: " + senhaCadastrada);
+    var loginInformado = prompt("Para entrar no site, é preciso ter uma conta. Informe seu login:");
+    var senhaInformada = prompt("Senha:");
+    var tentativas = 0;
+
+    while(loginCadastrado != loginInformado | senhaCadastrada != senhaInformada && tentativas < 3) {
+	   		alert("Login ou senha inválidos. Tente novamente");
+	   		loginInformado = prompt("Login:");
+	    	senhaInformada = prompt("Senha:");
+	    	tentativas ++;	    		
+   	}
+
+   if(loginCadastrado != loginInformado | senhaCadastrada != senhaInformada) {
+   		alert("Acesso negado");
+    	document.write("<big>Você não tem permissão para acessar o site.</big>");
+    } else {
+   		alert("Bem-vindo, " + loginCadastrado);
+		document.write("<big>Parabéns, você achou a chave de acesso. Bem-vindo ao mundo dos curiosos.</big>");
+   }
+</script>

@@ -1,0 +1,25 @@
+<meta charset="UTF-8">
+<h1>Aula 08</h1>
+<h3>Atividade 01: Jogo da adivinhação com botão</h3>
+<p>Qual o número sorteado?</p>
+<input/>
+<button>Confirme</button>
+<script>
+	
+	var numeroSorteado = Math.round(Math.random() * 10);
+	var input = document.querySelector("input");
+	var button = document.querySelector("button");
+	input.focus();
+	button.onclick = verifica; // a função verifica não é executada, e sim a coloca ao onclick
+
+	function verifica() {
+		if(input.value == numeroSorteado) {
+			alert("Você acertou!");
+		} else {
+			alert("Você errou!");
+		}
+		input.value = "";
+		input.focus();
+	}
+
+</script>

@@ -1,0 +1,24 @@
+<meta charset="UTF-8">
+<h1>Aula 07</h1>
+<h3>Atividade 01: Números pares</h3>
+<script>
+	
+	function pulaLinha() {
+		document.write("<br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var contador = 2;
+	mostra("<big>Números pares de 0 á 100:</big>");
+	mostra("<hr>");
+
+	while(contador <= 100) {
+		mostra("-> " + contador);
+		contador += 2;
+	}
+
+</script>

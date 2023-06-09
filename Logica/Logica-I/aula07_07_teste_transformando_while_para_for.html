@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<h1>Aula 07</h1>
+<h3>Atividade 07: Teste transformando While para For</h3>
+<script>
+	
+	function pulaLinha() {
+		document.write("<br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	var totalFamiliares = parseInt(prompt("Quantidade de familiares:"));
+	var totalIdades = 0;
+
+	for(i = 0; i <= totalFamiliares; i++) {
+		var idades = parseInt(prompt("Informe a idade do familiar:"));
+		totalIdades = totalIdades + idades;
+	}
+
+	var mediaDasIdades = totalIdades / totalFamiliares;
+	mostra("A média das idades dos familiares é " + mediaDasIdades);
+	mostra("<hr>");
+
+</script>

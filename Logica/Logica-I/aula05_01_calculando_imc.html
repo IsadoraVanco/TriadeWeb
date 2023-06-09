@@ -1,0 +1,20 @@
+<meta charset="UTF-8">
+<h1>Aula 05</h1>
+<h3>Atividade 01: Calculando IMC</h3>
+<script>
+	function pulaLinha() {
+		document.write("<br><br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	function calculaIMC(peso, altura) {
+		var imc = peso / (altura * altura);
+		mostra("O IMC calculado é " + imc);
+	}
+
+	calculaIMC(50, 1.65); //minhas medidas atuais
+</script>

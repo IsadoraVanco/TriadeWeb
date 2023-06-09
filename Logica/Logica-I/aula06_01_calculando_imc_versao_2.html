@@ -1,0 +1,41 @@
+<meta charset="UTF-8">
+<h1>Aula 06</h1>
+<h3>Atividade 01: Calculando IMC v2.0</h3>
+<script>
+	function pulaLinha() {
+		document.write("<br><br>");
+	}
+
+	function mostra(frase) {
+		document.write(frase);
+		pulaLinha();
+	}
+
+	function calculaIMC(peso, altura) {
+		return peso / (altura * altura);
+	}
+
+	var nome = prompt("Olá, Bem vind@ ao Teste de IMC! Por favor, para começar, informe seu nome:");
+	var pesoUsuario = prompt(nome + ", qual o seu peso? (Utilize o ponto como vírgula)");
+	var alturaUsuario = prompt("E por fim, por favor, " + nome + ", informe a sua altura: (Utilize o ponto como vírgula)");
+	var imc = calculaIMC(pesoUsuario, alturaUsuario);
+
+	mostra("<big>" + nome + ", o valor obtido foi de " + imc + "</big>");
+	mostra("<hr>");
+
+	if(imc < 18.5) {
+		mostra("<big>Seu IMC está abaixo de 18.5, portanto, você está abaixo do peso adequado.</big>");
+	}
+
+	if(imc >= 18.5 && imc <= 35) {
+		mostra("<big>Seu IMC está entre 18.5 e 35, portanto, você está no peso adequado.</big>");
+	}
+
+	if(imc > 35) {
+		mostra("<big>Seu IMC é maior que 35, portanto, você está acima do peso adequado.</big>");
+	}
+
+	mostra("<hr>")
+	mostra("<big>Obrigada por utilizar meu programa! Até a próxima! :)</big>")
+	
+</script>

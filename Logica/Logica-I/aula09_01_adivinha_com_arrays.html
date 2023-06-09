@@ -1,0 +1,36 @@
+<meta charset="UTF-8">
+<h1>Aula 09</h1>
+<h3>Atividade 01: Jogo da adivinhação usando arrays</h3>
+<p>Qual o número sorteado?</p>
+<input/>
+<button>Confirme</button>
+<script>
+
+	var numerosChaves = [1,3,5,8];
+	var input = document.querySelector("input");
+	input.focus();
+	
+	function verifica() {
+		
+		var achou = false;
+
+		for(var posicao = 0; posicao < numerosChaves.length; posicao++) {
+			if(input.value == numerosChaves[posicao]) {
+				alert("Você acertou!");
+				achou = true;
+				break;
+			} 
+		}
+
+		if(achou == false){
+			alert("Você Errou!");
+		}
+		
+		input.value = "";
+		input.focus();
+	}
+
+	var button = document.querySelector("button");
+	button.onclick = verifica; // a função verifica não é executada, e sim a coloca ao onclick
+
+</script>

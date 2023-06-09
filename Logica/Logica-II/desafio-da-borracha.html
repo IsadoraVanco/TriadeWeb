@@ -1,0 +1,88 @@
+<!-- Desafio da Borracha -->
+<!-- Aluna: Isadora Vanço -->
+
+<html>
+	<meta charset="UTF-8">
+	<canvas width="600" height="500"></canvas>
+	<script>
+		var tela = document.querySelector('canvas');
+		var pincel = tela.getContext('2d');
+
+		function desenhaQuadrado(x, y, cor){
+			pincel.fillStyle = cor;
+			pincel.fillRect(x,y, 50, 50);
+			pincel.fillStyle = 'black';
+			pincel.strokeRect(x,y, 50,50);
+		}
+
+		function limpaTela(){
+			pincel.fillStyle = 'white';
+			pincel.fillRect(0,0, 600, 400);
+			pincel.fillStyle = 'black';
+			pincel.strokeRect(0,0, 600,400);
+		}
+
+		function desenhaCirculos(evento){
+			var x = evento.pageX - tela.offsetLeft;
+			var y = evento.pageY - tela.offsetTop;
+			
+			if(podeDesenhar && y <= 390){
+				pincel.fillStyle = ultimaCor;
+				pincel.beginPath();
+				pincel.arc(x, y, 10, 0, 2 * 3.14);
+				pincel.fill(); 
+			}
+		}
+
+		function escolheCor(evento){
+			var x = evento.pageX - tela.offsetLeft;
+			var y = evento.pageY - tela.offsetTop;
+
+			if(y >= 425 && y <= 475){
+				var inicio = 30;
+				for(var i = 0; i < cores.length; i++){
+					if(x >= inicio && x <= inicio + 50){
+						if(cores[i] == 'white'){
+							if(evento.shiftKey){
+								limpaTela();
+							}else{
+								ultimaCor = cores[i];
+							}
+						}else{
+							ultimaCor = cores[i];
+							break
+						}
+					}
+					inicio += 70;
+				}
+			}
+		}
+
+		tela.onmousedown = function(){
+			podeDesenhar = true;
+		}
+
+		tela.onmouseup = function(){
+			podeDesenhar = false;
+		}
+
+		tela.onmousemove = desenhaCirculos;
+
+		tela.onclick = escolheCor;
+
+		var podeDesenhar = false;
+		var ultimaCor;
+
+		var cores = ['pink', 'red', 'yellow', 'green', 'blue', 'purple', 'black', 'white'];
+		pincel.fillStyle = 'lightgrey';
+		pincel.fillRect(0,400, 600, 100);
+		pincel.fillStyle = 'black';
+		pincel.strokeRect(0,0, 600, 400);
+
+		var inicio = 30;
+		for(var i = 0; i < cores.length; i++){
+			desenhaQuadrado(inicio, 425, cores[i]);
+			inicio += 70;
+		}
+	</script>
+</html>
