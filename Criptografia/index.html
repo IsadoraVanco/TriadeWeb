@@ -1,0 +1,36 @@
+<!-- Setembro de 2024 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Criptografia</title>
+</head>
+<body>
+    <div class="block">
+        <h1>Criptografar Mensagem</h1>
+        <input type="text" id="mensagemEncriptar" placeholder="Digite a mensagem"><br><br>
+        <input type="password" id="senhaEncriptar" placeholder="Digite a senha"><br><br>
+        <button onclick="encriptar()">Criptografar</button><br><br>
+        <textarea id="resultadoEncriptado" placeholder="Mensagem criptografada" readonly></textarea><br><br>
+    </div>
+
+    <div class="block">
+        <h1>Descriptografar Mensagem</h1>
+        <input type="text" id="mensagemDecriptografar" placeholder="Cole a mensagem criptografada"><br><br>
+        <input type="password" id="senhaDecriptografar" placeholder="Digite a senha"><br><br>
+        <button onclick="decriptar()">Descriptografar</button><br><br>
+        <textarea id="resultadoDecriptografado" placeholder="Mensagem original" readonly></textarea>
+    </div>
+
+    <div class="block">
+        <h1>Descriptografar mensagem pronta</h1>
+        <input type="password" id="mensagemProntaDecriptografar" placeholder="Digite a senha"><br><br>
+        <button onclick="decriptarMensagem()">Descriptografar mensagem pronta</button><br><br>
+        <textarea id="resultadoProntoDecriptografado" placeholder="Mensagem original" readonly></textarea>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
