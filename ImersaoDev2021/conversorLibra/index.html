@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Conversor de moedas</title>
+</head>
+<body>
+  <header>
+    <h1 class="titulo">Conversor de moedas</h1>
+  </header>
+  <div class="container1">
+    <h1>Valor da moeda</h1>
+    <h2>1 Libra = <span id="libra"></span><br>
+    <h2>1 Dólar = <span id="dolar"></span><br>
+    <h2>Digite o valor:<input type="float" id="input"/></h2>		
+  </div>
+  <div class="container2">
+    <h1>Escolha para qual moeda o valor será convertido</h1>
+    <p>
+      <button class="button1" id="libraBotao" onclick="mostraLibra(this)">Libra</button>
+      <button class="button2" id="dolarBotao" onclick="mostraDolar(this)">Dólar</button>
+    </p>
+  </div>		
+  <div class="container3">
+    <h2>Valor convertido: <span id="output" color="black"></span></h2>
+  </div>
+
+  <script src="./script.js"></script>
+</body>
+</html>
